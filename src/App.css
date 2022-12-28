@@ -1,0 +1,616 @@
+.gameboy-container {
+    transform: scale(1.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  /*   justify-content: center; */
+    height: 560px;
+    width: 350px;
+    background-color: #E7115F;
+    margin: auto;
+    margin-top: 150px;
+    border-radius: 5%;
+    margin-bottom: 200px;
+    font-family: "Gill Sans";
+  /*   transform: rotateY(180deg) */
+  /*   font-weight: bold; */
+  /*   font-style: italic; */
+  }
+  
+  .gameboy-screen-container {
+    position: relative;
+    height: 250px;
+    width: 312px;
+    background-color: #313638;
+    margin-top: 25px;
+    border-radius: 10px 10px 0 0;
+    border: solid 1px black;
+  }
+  
+  .upper-line {
+    position: absolute;
+    top: -20px;
+    left: 0px;
+    width: 100%;
+    height: 1px;
+    background-color: #cf0a52;
+  
+  }
+  
+  .top-left-line {
+    position: absolute;
+    top: -20px;
+    left: 40px;
+    height: 18px;
+    width: 1px;
+    background-color: #cf0a52;
+  }
+  
+  .top-right-line {
+    position: absolute;
+    top: -20px;
+    right: 40px;
+      height: 18px;
+    width: 1px;
+    background-color: #cf0a52;
+  }
+  
+  .top-triangle {
+     position: absolute;
+    top: -18px;
+    left: 50px;
+     width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 12px solid #cf0a52;
+  /*   background-color: #cf0a52; */
+  }
+  
+  .top-text {
+     position: absolute;
+    top: -19px;
+    left: 70px;
+    font-size: 13px;
+  /*    width: 0; */
+  /*       height: 0; */
+  /*    = */
+   color: #cf0a52; 
+  }
+  
+  .gameboy-screen {
+    position: absolute;
+    top: 47.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 180px;
+    width: 200px;
+    background-color: gray;
+    box-shadow: inset 0 0 5px 4px black;
+    opacity: .5;
+    transition: 2s all;
+  }
+
+  .gameboy-screen.on {
+    background: url("https://images.gamebanana.com/img/ss/mods/58a4cc894f752.jpg");
+    background-size: 200px 180px;
+    opacity: 1;
+  }
+  
+  .gameboy-text {
+    position: absolute;
+    top: 96%;
+    left: 37.5%;
+    transform: translate(-50%, -50%);
+    color: grey;
+    z-index: 5;
+    font-size: 20px;
+    font-style: italic;
+  }
+  
+  .c-text {
+    position: absolute;
+    top: 96%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+    color: #BF0D6C;
+    z-index: 5;
+    font-size: 20px;
+  }
+  .o-text {
+    position: absolute;
+    top: 96%;
+    left: 62%;
+    transform: translate(-50%, -50%);
+    color: #4F4ACD;
+    z-index: 5;
+    font-size: 18px;
+  }
+  .l-text {
+    position: absolute;
+    top: 96%;
+    left: 66%;
+    transform: translate(-50%, -50%) rotate(-5deg);
+    color: #8CB139;
+    z-index: 5;
+    font-size: 20px;
+  /*   transform: rotate(1deg) */
+  }
+  .o-two-text {
+    position: absolute;
+    top: 96%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    color: #E7D509;
+    z-index: 5;
+    font-size: 18px;
+  }
+  .r-text {
+    position: absolute;
+    top: 96%;
+    left: 74%;
+    transform: translate(-50%, -50%);
+    color: #0289A7;
+    z-index: 5;
+    font-size: 20px;
+  }
+  
+  .curve {
+    position: absolute;
+    width: 310px;
+    height: 40px;
+    background-color: #313638;
+    top: 92.5%;
+    border:solid 1px #000;
+    border-color: transparent transparent #000 transparent;
+  /*   border-radius: 0 0 240px 70%/60px; */
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    z-index: 1
+  }
+  
+  .power-icon-container {
+    position: absolute;
+    top: 30%;
+    left: 1%;
+    height: 30px;
+    width: 45px;
+  }
+  
+  .power-icon-flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+    
+  .power-icon-flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
+    width: 100%;
+  }
+  
+  .power-icon-circle {
+    background-color: black;
+    border-radius: 50%;
+    height: 12px;
+    width: 15px;
+    z-index: 6;
+    margin-left: 1px;
+  }
+
+  .power-icon-circle.red {
+    background-color: red;
+  }
+  
+  .moon {
+    background-color: #313638;
+    width: 15px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: inset 0px 2px #8F999F, inset 0px 5px 0px 0px #8F999F;
+    transform: rotate(90deg);
+    z-index: 5;
+     
+  }
+  
+  .moon2 {
+    background-color: #313638;
+    width: 15px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: inset 0px 2px #8F999F, inset 0px 4px 0px 0px #8F999F;
+    transform: rotate(90deg);
+    z-index: 4;
+  
+  }
+    
+  .moon3 {
+    background-color: #313638;
+    width: 15px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: inset 0px 0px #8F999F, inset 0px 3px 0px 0px #8F999F;
+    transform: rotate(90deg);
+    z-index: 3;
+  }
+   
+  .power-text {
+    color: #8F999F;
+    font-size: 11px;
+    margin-left: 5px;
+  }
+  
+  .power-switch {
+    position: relative;
+    height: 50px;
+    width: 3px;
+    background-color: black;
+    top: 100px;
+    left: 330px;
+    transition: all 1s;
+  /*   z-index: -1; */
+  }
+
+  .power-switch.up {
+    top: 90px;
+  }
+  
+  /* .power-switch:active {
+    transform: translateY(-10px);
+  } */
+  
+  .outer-power-switch {
+    position: absolute;
+    top: 18px;
+    left: 3px;
+    height: 10px;
+    width: 3px;
+    background-color: black;
+    z-index: 2
+  /*   margin-bottom: -20px; */
+  }
+  
+  .lower-gameboy-container {
+    position: relative;
+  /*   top: 55%; */
+  /*   left: 50%; */
+  /*   transform: translate(-50%, -50%); */
+  /*   background-color: blue; */
+    height: 230px;
+    width: 300px;
+    margin-top: 25px;
+  }
+  
+  .lower-gameboy-container-lines {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    height: 260px;
+    width: 230px;
+    border: solid .5px #cf0a52;
+    border-radius:0px 0px 20px 20px;
+    border-color: transparent #cf0a52 #cf0a52 #cf0a52;
+  /*   z-index: -1px; */
+  }
+  
+  .nintendo-text-container {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%,-50%);
+    border-radius: 40px;
+    width: 100px;
+    height: 20px;
+    border: solid 3px #cf0a52;
+    text-align: center
+  }
+  
+  .nintendo-inner-text-container {
+    position: relative;
+  }
+  
+  .nintendo-text {
+     position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: #cf0a52;
+    font-size: 18px;
+    font-weight: bold;
+  /*   margin-bottom: 5px; */
+  /*   font-stretch: expanded; */
+  }
+  
+  .gamepad-container {
+    position: absolute;
+    top: 30px;
+    left: -65px;
+  }
+  
+   .gamepad {
+        background: #3B394A;
+        height: 80px;
+        position: relative;
+        width: 25px;
+        box-shadow: 0 0 2px 3px black;
+      }
+   .gamepad:after {
+        background: #3B394A;
+        content: "";
+        height: 25px;
+        left: -27.5px;
+        position: absolute;
+        top: 27.5px;
+        width: 80px;
+        box-shadow: 0 0 2px 3px black;
+    }
+  
+  .gamepad-shadow-cover-upper, .gamepad-shadow-cover-lower {
+    background-color: #3B394A;
+    height: 30px;
+    width: 25px;
+    z-index: 2;
+  }
+  
+  .gamepad-shadow-cover-upper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  
+  .gamepad-shadow-cover-lower {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+  }
+  
+  .gamepad-arrow-up {
+    position: absolute;
+    top: 3px;
+    left: 4.5px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 16px solid #2E2C39;
+    z-index: 3
+  }
+  
+  .gamepad-arrow-up:active {
+  /*   box-shadow: 0 0 1px 2px black; */
+  /*   transform: translateY(-1px); */
+  }
+  
+  .gamepad-arrow-right {
+    position: absolute;
+    top: 33px;
+    left: 32px;
+     width: 0;
+     height: 0;
+     border-top: 8px solid transparent;
+     border-left: 16px solid #2E2C39;
+     border-bottom: 8px solid transparent;
+    z-index: 5;
+  }
+  
+  .gamepad-arrow-down {
+    position: absolute;
+    top: 60px;
+    left: 5px;
+     width: 0;
+     height: 0;
+     border-left: 8px solid transparent;
+     border-right: 8px solid transparent;
+     border-top: 16px solid #2E2C39;
+    z-index: 5;
+  }
+  
+  .gamepad-arrow-left {
+    position: absolute;
+    top: 33px;
+    left: -22px;
+     width: 0;
+     height: 0;
+     border-top: 8px solid transparent;
+     border-right: 16px solid #2E2C39;
+     border-bottom: 8px solid transparent;
+    z-index: 5;
+  }
+  
+  .gamepad-arrow-left:active {
+    box-shadow: inset 0 0 0px 0px black;
+    transform: translateX(-2px);
+  }
+  
+  .gamepad-circle {
+    position: absolute;
+    top: 30px;
+    left: 2.5px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #2B232D;
+    z-index: 5;
+  }
+  
+  .b-button, .a-button {
+    height: 40px;
+    width: 40px;
+    background-color: #3B394A;
+    border-radius: 50%;
+    box-shadow: inset 0 0 1px 1px black;
+  
+  }
+  
+  .b-button {
+    position: absolute;
+    top: 60px;
+    left: 90px;
+  }
+  
+  .a-button {
+    position: absolute;
+    top: 40px;
+    left: 150px;
+  }
+  
+  .a-button:active, .b-button:active{
+  /*    background-color: #3e8e41; */
+    box-shadow: inset 0 0 0px 0px black;
+    transform: translateY(4px);
+  }
+  
+  .b-button-container, .a-button-container {
+    position: relative;
+  /*   background-color: blue; */
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  /*   border: solid .001em black; */
+  }
+  
+  .b-button-text, .a-button-text {
+    font-style: italic;
+    font-size: 30px;
+    color: #2B232D;
+  }
+  .b-button-text {
+    position: absolute;
+    left: 10px;
+    top: 5px;
+  }
+  
+  .a-button-text {
+    position: absolute;
+    left: 10px;
+    top: 4px;
+  }
+  
+  .select-start-container {
+    position: absolute;
+    height: 12px;
+    width: 100px;
+    top: 160px;
+  /*   background-color: blue; */
+  }
+  
+  .select, .start {
+    height: 10px;
+    width: 30px;
+    border-radius: 40px;
+    background-color: #3B394A;
+    border: solid 3px #cf0a52;
+  
+  }
+  
+  .select {
+    position: absolute;
+    left: 10px;
+  }
+  
+  .start {
+    position: absolute;
+    right: 10px;
+  }
+  
+  .start:active, .select:active {
+  /*   box-shadow: inset 0 0 0px 0px black; */
+    transform: translateY(1px);
+  }
+  
+  .select-start-text-container {
+    position: absolute;
+    height: 12px;
+    width: 100px;
+    top: 178px;
+  /*   background-color: blue; */
+  }
+  
+  .select-text, .start-text{
+    font-size: 12px;
+    color: #cf0a52;
+  }
+  
+  .select-text {
+    position: absolute;
+    left: 9px;
+  }
+  
+  .start-text {
+    position: absolute;
+    right: 10px;
+  }
+  
+  .speaker-container {
+    position: absolute;
+    top: 165px;
+    left: 125px;
+    height: 80px;
+    width: 80px;
+    transform: rotate(-7deg) skew(-5deg, 3deg);
+  /*   background-color: blue; */
+  }
+  
+  .speaker-inner-container {
+  /*   position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    height: 80px;
+    width: 80px;
+  /*   background-color: blue; */
+  }
+  
+  .speaker-hole-top-row, .speaker-hole-bottom-row, .speaker-hole-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  /*   background-color: red; */
+    gap: 2px;
+  }
+  
+  .speaker-hole-top-row, .speaker-hole-bottom-row {
+    width: 80%;
+    margin-left: 10%;
+  }
+  
+  .open-circle, .filled-in-circle{
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+  }
+  
+  .open-circle {
+   background-color: #490203;
+  }
+  
+  .filled-in-circle {
+    background-color: #D62A6B;
+  }
+  
+  .bottom-curve {
+    position: absolute;
+    width: 344px;
+    height: 40px;
+    background-color: #E7115F;;
+    top: 235px;
+    left: -25px;
+    border:solid 3px #000;
+    border-color: transparent transparent  #cf0a52 transparent;
+  /*   border-radius: 0 0 50% 50% / 50px; */
+  
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+  /*   border-radius: 0 0 240px 70%/60px; */
+    z-index: -1;
+    margin-bottom: 20px;
+  }
+  
+  
