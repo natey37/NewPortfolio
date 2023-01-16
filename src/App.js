@@ -1,8 +1,8 @@
 import React from 'react';
-import GameBoyColor from './GameBoyColor';
+import GameBoyColor from './components/GameBoyColor/GameBoyColor';
+import './App.css'
 
 function App() {
-
   return (
     <>
       <GameBoyColor/>
