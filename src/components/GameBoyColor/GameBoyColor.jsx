@@ -65,7 +65,7 @@ function GameBoyColor() {
             <div className="power-icon-flex-container">
               <div className="power-icon-flex-row">
                 <span className={`power-icon-circle ${state.powerOn && "red"}`}></span>
-                <span className="moon"></span>
+                <span className="moonPower"></span>
                 <span className="moon2"></span>
                 <span className="moon3"></span>
               </div>

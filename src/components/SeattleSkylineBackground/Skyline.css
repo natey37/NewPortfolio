@@ -1,0 +1,4394 @@
+:root {
+    --sun-ray-long: #FFCC33;
+    --sun-ray-short: #FFE484;
+    --sun: #FC9601;
+    --white: #ffffff;
+  }
+  
+  body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+  }
+  
+  #root {
+    width: 100%;
+    height: 100%;
+    background-color: lightblue;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background-color: skyblue;
+  }
+  
+  @keyframes gradient-cycle {
+    0%, 6% {
+      background: linear-gradient(0deg, #b3cde0, #b3cde0);
+    } /* Light Blue */
+    8%, 14% {
+      background: linear-gradient(0deg, #b3cde0, #9fb8d6);
+    } /* Transition from light blue to medium blue */
+    16%, 22% {
+      background: linear-gradient(0deg, #9fb8d6, #8ca3cd);
+    } /* Medium Blue */
+    24%, 30% {
+      background: linear-gradient(0deg, #8ca3cd, #7790c5);
+    } /* Transition from medium blue to dark blue */
+    32%, 38% {
+      background: linear-gradient(0deg, #7790c5, #647cbb);
+    } /* Dark Blue */
+    40%, 46% {
+      background: linear-gradient(0deg, #647cbb, #5077b3);
+    } /* Transition to a slightly darker blue */
+    48%, 54% {
+      background: linear-gradient(0deg, #5077b3, #3d71ab);
+    } /* A bit darker Blue */
+    56%, 62% {
+      background: linear-gradient(0deg, #3d71ab, #2a6ca3);
+    } /* Transition to a darker shade */
+    64%, 70% {
+      background: linear-gradient(0deg, #2a6ca3, #18669b);
+    } /* Darker Blue */
+    72%, 78% {
+      background: linear-gradient(0deg, #18669b, #066194);
+    } /* Transition to an even darker shade */
+    80%, 86% {
+      background: linear-gradient(0deg, #066194, #05568e);
+    } /* Even Darker Blue */
+    88%, 94% {
+      background: linear-gradient(0deg, #05568e, #044a88);
+    } /* Transition to the darkest shade */
+    96%, 100% {
+      background: linear-gradient(0deg, #044a88, #033e82);
+    } /* Darkest Blue */
+  }
+  .moon-pos {
+    position: absolute;
+    top: -160px;
+    right: -160px;
+    transform: scale(0.2);
+  }
+  
+  .moon-container {
+    position: relative;
+    width: 478px;
+    height: 478px;
+    background-color: black;
+    border-radius: 50%;
+  }
+  
+  .moon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .full {
+    background-color: #fff;
+  }
+  
+  .new {
+    background-color: #000;
+  }
+  
+  .waning-c::before, .waxing-c::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #000;
+  }
+  
+  .waning-g::before, .waxing-g::before {
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+  
+  .waxing-g::before, .waning-c::before {
+    left: 25%;
+  }
+  
+  .waning-g::before, .waxing-c::before {
+    right: 25%;
+  }
+  
+  .half-moon-c::before, .half-moon-g::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: #000;
+    right: 0;
+  }
+  
+  .half-moon-c::before {
+    background-color: #000;
+  }
+  
+  .half-moon-g::before {
+    background-color: #fff;
+  }
+  
+  .new-moon {
+    border: 1px solid white;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .sun-pos {
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    transform: scale(0.3);
+  }
+  
+  .sun-container {
+    position: relative;
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sun {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--sun);
+    opacity: 1;
+    overflow: hidden;
+    z-index: 2;
+  }
+  
+  .sun-rays {
+    position: absolute;
+    top: 13%;
+    left: 49%;
+    width: 0;
+    height: 0;
+    /*   transform: translate(-50%, -50%); */
+    z-index: 1;
+  }
+  
+  .sun-ray {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--sun-ray-long);
+    transform-origin: bottom;
+  }
+  
+  .sun-ray:nth-child(1) {
+    transform: rotate(0deg) translateY(-50%);
+  }
+  
+  .sun-ray:nth-child(2) {
+    transform: rotate(45deg) translateY(-50%);
+  }
+  
+  .sun-ray:nth-child(3) {
+    transform: rotate(90deg) translateY(-50%);
+  }
+  
+  .sun-ray:nth-child(4) {
+    transform: rotate(135deg) translateY(-50%);
+  }
+  
+  .sun-ray:nth-child(5) {
+    transform: rotate(180deg) translateY(-50%);
+  }
+  
+  .sun-ray:nth-child(6) {
+    transform: rotate(225deg) translateY(-50%);
+  }
+  
+  .sun-ray:nth-child(7) {
+    transform: rotate(270deg) translateY(-50%);
+  }
+  
+  .sun-ray:nth-child(8) {
+    transform: rotate(315deg) translateY(-50%);
+  }
+  
+  .sun-ray:nth-child(n+9) {
+    background-color: var(--sun-ray-short);
+  }
+  
+  .sun-ray:nth-child(9) {
+    transform: rotate(22.5deg) translateY(-20%);
+  }
+  
+  .sun-ray:nth-child(10) {
+    transform: rotate(67.5deg) translateY(-20%);
+  }
+  
+  .sun-ray:nth-child(11) {
+    transform: rotate(112.5deg) translateY(-20%);
+  }
+  
+  .sun-ray:nth-child(12) {
+    transform: rotate(157.5deg) translateY(-20%);
+  }
+  
+  .sun-ray:nth-child(13) {
+    transform: rotate(202.5deg) translateY(-20%);
+  }
+  
+  .sun-ray:nth-child(14) {
+    transform: rotate(247.5deg) translateY(-20%);
+  }
+  
+  .sun-ray:nth-child(15) {
+    transform: rotate(292.5deg) translateY(-20%);
+  }
+  
+  .sun-ray:nth-child(16) {
+    transform: rotate(337.5deg) translateY(-20%);
+  }
+  
+  @keyframes moon-cycle {
+    0%, 50% {
+      opacity: 0;
+    }
+    51%, 100% {
+      opacity: 1;
+    }
+  }
+  @keyframes sun-cycle {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+  @keyframes sun-move {
+    0% {
+      right: -200px; /* Start position */
+    }
+    100% {
+      right: calc(100% + 200px); /* End position */
+    }
+  }
+  @keyframes sun-rotate {
+    0% {
+      transform: rotate(0deg) scale(0.3);
+    }
+    100% {
+      transform: rotate(360deg) scale(0.3);
+    }
+  }
+  #mountRainier {
+    height: 50%;
+    width: 60%;
+    position: absolute;
+    top: 10%;
+    right: 0%;
+  }
+  
+  #rainier {
+    clip-path: polygon(48% 62%, 55% 62%, 67% 73%, 83% 89%, 100% 100%, 50% 100%, 0 100%, 16% 94%, 27% 85%, 37% 73%);
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    z-index: 10;
+  }
+  
+  #mt-top {
+    position: absolute;
+    top: 60%;
+    left: 46%;
+    height: 20%;
+    width: 11%;
+    border-radius: 50%;
+    background-color: white;
+  }
+  
+  #small-mt {
+    clip-path: polygon(55% 61%, 57% 62%, 60% 68%, 64% 72%, 64% 73%, 50% 84%, 37% 90%, 41% 85%, 45% 81%, 50% 72%);
+    background-color: white;
+    height: 30%;
+    width: 40%;
+    position: absolute;
+    top: 70%;
+    left: -5%;
+  }
+  
+  .snow-splotch-1 {
+    width: 10%;
+    height: 10%;
+    background: radial-gradient(circle at 30% 30%, #A3CFE9 0%, transparent 40%);
+    position: absolute;
+    top: 87%;
+    left: 14%;
+  }
+  
+  .snow-splotch-2 {
+    width: 4%;
+    height: 70%;
+    background: radial-gradient(circle at 30% 30%, #A3CFE9 0%, transparent 50%);
+    position: absolute;
+    top: 58%;
+    left: 20%;
+    transform: skew(-20deg) rotate(50deg);
+  }
+  
+  .snow-splotch-3 {
+    width: 20%;
+    height: 22%;
+    background: radial-gradient(circle at 70% 30%, #A3CFE9 0%, transparent 40%);
+    position: absolute;
+    top: 75%;
+    left: 32%;
+    transform: rotate(15deg);
+  }
+  
+  .snow-splotch-4 {
+    width: 3%;
+    height: 80%;
+    background: radial-gradient(circle at 70% 30%, #A3CFE9 0%, transparent 30%);
+    position: absolute;
+    top: 50%;
+    left: 37%;
+    transform: rotate(80deg) skew(30deg);
+  }
+  
+  .snow-splotch-5 {
+    width: 30%;
+    height: 20%;
+    background: radial-gradient(circle at 70% 60%, #A3CFE9 0%, transparent 35%);
+    position: absolute;
+    top: 80%;
+    left: 15%;
+    transform: rotate(10deg);
+  }
+  
+  #mt-base {
+    background-color: #6098D1;
+    height: 15%;
+    width: 105%;
+    position: absolute;
+    top: 100%;
+    left: 5%;
+    transform: skew(60deg);
+    opacity: 0.6;
+    z-index: 2;
+  }
+  
+  #spaceNeedle {
+    position: absolute;
+    left: 20%;
+    bottom: 10%;
+    transform: scale(1);
+    height: 500px;
+    width: 200px;
+    z-index: 10;
+  }
+  
+  .left-leg-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    height: 240px;
+    width: 7.5px;
+    background-color: white;
+    transform: rotate(12deg);
+  }
+  
+  .right-leg-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 70px;
+    height: 230px;
+    width: 5px;
+    background-color: white;
+    transform: rotate(-7deg);
+    z-index: 5;
+  }
+  
+  .right-side-bot {
+    z-index: 5;
+    position: absolute;
+    bottom: 0;
+    right: 80px;
+    transform: rotate(-6deg);
+  }
+  
+  .rect-container {
+    height: 225px;
+    width: 15px;
+    position: relative;
+  }
+  
+  .rect-bot {
+    right: 40px;
+    height: 22px;
+    width: 5px;
+    border: 5px solid white;
+  }
+  
+  .mid-section-lower {
+    position: absolute;
+    bottom: 60px;
+    left: 46px;
+    width: 100px;
+    height: 20px;
+    background-color: white;
+    z-index: 1;
+    border-radius: 5px;
+  }
+  
+  .mid-section-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .window-long {
+    position: absolute;
+    top: 5px;
+    width: 100%;
+    background-color: #00008b;
+    height: 5px;
+  }
+  
+  .mid-section-mid {
+    position: absolute;
+    bottom: 155px;
+    left: 60px;
+    width: 60px;
+    height: 7.5px;
+    background-color: white;
+    z-index: 1;
+  }
+  
+  .mid-section-right {
+    height: 90px;
+    width: 25px;
+    background-color: white;
+    position: absolute;
+    top: 187px;
+    left: 91px;
+    border-bottom-left-radius: 5px;
+  }
+  
+  .mid-section-left {
+    height: 50px;
+    width: 7.5px;
+    background-color: white;
+    position: absolute;
+    top: 215px;
+    left: 75px;
+  }
+  
+  .top-section-left {
+    height: 100px;
+    width: 7.5px;
+    background-color: white;
+    position: absolute;
+    top: 116px;
+    left: 69px;
+    transform: rotate(-7deg);
+  }
+  
+  .top-section-mid {
+    height: 75px;
+    width: 5px;
+    background-color: white;
+    position: absolute;
+    top: 116px;
+    left: 90px;
+    transform: rotate(-2deg);
+  }
+  
+  .top-section-right {
+    height: 85px;
+    width: 7.5px;
+    background-color: white;
+    position: absolute;
+    top: 116px;
+    left: 112px;
+    transform: rotate(8deg);
+  }
+  
+  .top-base-bottom-circle {
+    position: absolute;
+    top: 110px;
+    left: 51px;
+    background-color: white;
+    height: 10px;
+    width: 85px;
+    border-radius: 50%;
+  }
+  
+  .top-base {
+    position: absolute;
+    top: 99px;
+    left: 55px;
+    background-color: white;
+    height: 15px;
+    width: 75px;
+    background-color: #444444;
+    z-index: 10;
+  }
+  
+  .top-base-top {
+    position: absolute;
+    top: 95px;
+    left: 43px;
+    background-color: #444444;
+    height: 5px;
+    width: 100px;
+    border-radius: 50%;
+    z-index: 10;
+  }
+  
+  .top-base-top-circle {
+    position: absolute;
+    top: 93px;
+    left: 53px;
+    background-color: white;
+    height: 3px;
+    width: 80px;
+    border-radius: 50%;
+    z-index: 10;
+  }
+  
+  .top-orange {
+    position: absolute;
+    top: 83px;
+    left: 55px;
+    background-color: #ff4500;
+    height: 25px;
+    width: 76px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  .top-orange-top {
+    position: absolute;
+    top: 75px;
+    left: 79px;
+    background-color: #ff4500;
+    height: 15px;
+    width: 25px;
+    z-index: 1;
+  }
+  
+  .top-orange-top-circle {
+    position: absolute;
+    top: 72px;
+    left: 76.5px;
+    background-color: #ff4500;
+    height: 7px;
+    width: 30px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  .antenna {
+    position: absolute;
+    top: 43px;
+    left: 89.5px;
+    background-color: white;
+    height: 30px;
+    width: 2px;
+    z-index: 1;
+  }
+  
+  .building-1 {
+    position: absolute;
+    left: 1%;
+    bottom: 27%;
+    background-color: gray;
+    height: 180px;
+    width: 80px;
+    z-index: 2;
+  }
+  .building-1 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-1 .inner {
+    height: 90%;
+    width: 75%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-1 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, white 0px, white 10px, black 10px, black 11px);
+    background-size: 100% 11px;
+  }
+  
+  .building-2 {
+    position: absolute;
+    left: 10%;
+    bottom: 14%;
+    background-color: white;
+    height: 150px;
+    width: 80px;
+    z-index: 3;
+  }
+  .building-2 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-2 .inner {
+    height: 97%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-2 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #CD7F32 0px, #CD7F32 12px, white 12px, white 13px);
+    background-size: 100% 13px;
+  }
+  
+  .building-3 {
+    position: absolute;
+    left: 5%;
+    bottom: 12%;
+    background-color: darkblue;
+    height: 120px;
+    width: 60px;
+    z-index: 5;
+  }
+  .building-3 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-3 .inner {
+    height: 98%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-3 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #F5F5DC 0px, #F5F5DC 4px, black 4px, black 5px);
+    background-size: 100% 5px;
+  }
+  
+  .building-4 {
+    position: absolute;
+    left: -2%;
+    bottom: 15%;
+    background-color: white;
+    height: 100px;
+    width: 60px;
+    z-index: 5;
+  }
+  .building-4 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-4 .inner {
+    height: 98%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-4 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #606060 0px, #606060 4px, white 4px, white 5px);
+    background-size: 100% 5px;
+  }
+  
+  .building-5 {
+    position: absolute;
+    left: 15%;
+    bottom: 17%;
+    background-color: white;
+    height: 160px;
+    width: 60px;
+    z-index: 2;
+  }
+  .building-5 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-5 .inner {
+    height: 98%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-5 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, gray 0px, gray 4px, white 4px, white 5px);
+    background-size: 100% 5px;
+  }
+  
+  .building-6 {
+    position: absolute;
+    left: 18%;
+    bottom: 20%;
+    background-color: white;
+    height: 160px;
+    width: 70px;
+    z-index: 1;
+  }
+  .building-6 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-6 .inner {
+    height: 98%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-6 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #CD7F32 0px, #CD7F32 8px, black 8px, black 9px);
+    background-size: 100% 9px;
+  }
+  
+  .building-7 {
+    position: absolute;
+    left: 7%;
+    bottom: 18%;
+    background-color: white;
+    height: 160px;
+    width: 70px;
+    z-index: 2;
+  }
+  .building-7 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-7 .inner {
+    height: 98%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-7 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, white 0px, white 2px, black 2px, black 3px);
+    background-size: 100% 3px;
+  }
+  
+  .building-8 {
+    position: absolute;
+    left: 22%;
+    bottom: 14%;
+    background-color: #D3D3D3;
+    height: 130px;
+    width: 70px;
+    z-index: 3;
+  }
+  .building-8 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-8 .inner {
+    height: 95%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-8 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #CD7F32 0px, #CD7F32 6px, white 6px, white 7px);
+    background-size: 100% 7px;
+  }
+  
+  .building-9 {
+    position: absolute;
+    left: 28%;
+    bottom: 16%;
+    background-color: #778899;
+    height: 120px;
+    width: 75px;
+    z-index: 5;
+  }
+  .building-9 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-9 .inner {
+    height: 97%;
+    width: 95%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-9 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #F5F5DC 0px, #F5F5DC 5px, black 5px, black 6px);
+    background-size: 100% 6px;
+  }
+  
+  .building-10 {
+    position: absolute;
+    left: 34%;
+    bottom: 12%;
+    background-color: #DCDCDC;
+    height: 110px;
+    width: 60px;
+    z-index: 5;
+  }
+  .building-10 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-10 .inner {
+    height: 96%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-10 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #808080 0px, #808080 6px, white 6px, white 7px);
+    background-size: 100% 7px;
+  }
+  
+  .building-11 {
+    position: absolute;
+    left: 40%;
+    bottom: 15%;
+    background-color: #708090;
+    height: 170px;
+    width: 80px;
+    z-index: 3;
+  }
+  .building-11 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-11 .inner {
+    height: 98%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-11 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, gray 0px, gray 7px, white 7px, white 8px);
+    background-size: 100% 8px;
+  }
+  
+  .building-12 {
+    position: absolute;
+    left: 46%;
+    bottom: 13%;
+    background-color: #778899;
+    height: 160px;
+    width: 70px;
+    z-index: 1;
+  }
+  .building-12 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-12 .inner {
+    height: 95%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-12 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #CD7F32 0px, #CD7F32 6px, black 6px, black 7px);
+    background-size: 100% 7px;
+  }
+  
+  .building-13 {
+    position: absolute;
+    left: 52%;
+    bottom: 11%;
+    background-color: #DCDCDC;
+    height: 180px;
+    width: 90px;
+    z-index: 2;
+  }
+  .building-13 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-13 .inner {
+    height: 98%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-13 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, white 0px, white 3px, black 3px, black 4px);
+    background-size: 100% 4px;
+  }
+  
+  .building-14 {
+    position: absolute;
+    left: 58%;
+    bottom: 14%;
+    background-color: #D3D3D3;
+    height: 140px;
+    width: 70px;
+    z-index: 3;
+  }
+  .building-14 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-14 .inner {
+    height: 97%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-14 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #808080 0px, #808080 4px, white 4px, white 5px);
+    background-size: 100% 5px;
+  }
+  
+  .building-15 {
+    position: absolute;
+    left: 64%;
+    bottom: 12%;
+    background-color: #778899;
+    height: 130px;
+    width: 80px;
+    z-index: 5;
+  }
+  .building-15 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-15 .inner {
+    height: 96%;
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-15 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #CD7F32 0px, #CD7F32 7px, black 7px, black 8px);
+    background-size: 100% 8px;
+  }
+  
+  .building-16 {
+    position: absolute;
+    left: 70%;
+    bottom: 15%;
+    background-color: #D3D3D3;
+    height: 150px;
+    width: 70px;
+    z-index: 3;
+  }
+  .building-16 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-16 .inner {
+    height: 96%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-16 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #808080 0px, #808080 5px, white 5px, white 6px);
+    background-size: 100% 6px;
+  }
+  
+  .building-17 {
+    position: absolute;
+    left: 76%;
+    bottom: 12%;
+    background-color: #778899;
+    height: 140px;
+    width: 80px;
+    z-index: 5;
+  }
+  .building-17 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-17 .inner {
+    height: 95%;
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-17 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #CD7F32 0px, #CD7F32 7px, black 7px, black 8px);
+    background-size: 100% 8px;
+  }
+  
+  .building-18 {
+    position: absolute;
+    left: 82%;
+    bottom: 18%;
+    background-color: #DCDCDC;
+    height: 170px;
+    width: 90px;
+    z-index: 2;
+  }
+  .building-18 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-18 .inner {
+    height: 97%;
+    width: 95%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-18 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, white 0px, white 4px, black 4px, black 5px);
+    background-size: 100% 5px;
+  }
+  
+  .building-19 {
+    position: absolute;
+    left: 88%;
+    bottom: 13%;
+    background-color: #D3D3D3;
+    height: 160px;
+    width: 70px;
+    z-index: 3;
+  }
+  .building-19 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-19 .inner {
+    height: 98%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-19 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, gray 0px, gray 6px, white 6px, white 7px);
+    background-size: 100% 7px;
+  }
+  
+  .building-20 {
+    position: absolute;
+    left: 94%;
+    bottom: 16%;
+    background-color: #778899;
+    height: 180px;
+    width: 80px;
+    z-index: 1;
+  }
+  .building-20 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-20 .inner {
+    height: 96%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-20 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #CD7F32 0px, #CD7F32 5px, black 5px, black 6px);
+    background-size: 100% 6px;
+  }
+  
+  .building-21 {
+    position: absolute;
+    left: 100%;
+    bottom: 14%;
+    background-color: #DCDCDC;
+    height: 150px;
+    width: 70px;
+    z-index: 5;
+  }
+  .building-21 .outer-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .building-21 .inner {
+    height: 95%;
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .building-21 .inner .inner-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: repeating-linear-gradient(to bottom, #808080 0px, #808080 7px, white 7px, white 8px);
+    background-size: 100% 8px;
+  }
+  
+  .tree-1 {
+    position: absolute;
+    left: -6vw;
+    bottom: -5vh;
+    height: 227px;
+    width: 120px;
+    z-index: 100;
+  }
+  .tree-1 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 57px;
+    left: calc(50% - 12.5px);
+    background: #8B4513;
+  }
+  .tree-1 .leaf, .tree-1 .leaf-2, .tree-1 .leaf-3 {
+    position: absolute;
+    height: 38px;
+    background: rgb(0, 254, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 254, 0));
+    border-radius: 50%;
+  }
+  .tree-1 .leaf {
+    bottom: 50px;
+    width: 151px;
+    left: calc(50% - 75.5px);
+  }
+  .tree-1 .leaf-2 {
+    bottom: 70px;
+    width: 129.86px;
+    left: calc(50% - 64.93px);
+  }
+  .tree-1 .leaf-3 {
+    bottom: 90px;
+    width: 107.21px;
+    left: calc(50% - 53.605px);
+  }
+  .tree-1 .leaf::before, .tree-1 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 54.36px;
+    height: 19px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-1 .leaf::before {
+    left: 50%;
+  }
+  .tree-1 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-2 {
+    position: absolute;
+    left: -3vw;
+    bottom: -6vh;
+    height: 204px;
+    width: 117px;
+    z-index: 100;
+  }
+  .tree-2 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 56px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-2 .leaf, .tree-2 .leaf-2, .tree-2 .leaf-3 {
+    position: absolute;
+    height: 33px;
+    background: rgb(0, 43, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 43, 0));
+    border-radius: 50%;
+  }
+  .tree-2 .leaf {
+    bottom: 50px;
+    width: 153px;
+    left: calc(50% - 76.5px);
+  }
+  .tree-2 .leaf-2 {
+    bottom: 70px;
+    width: 131.58px;
+    left: calc(50% - 65.79px);
+  }
+  .tree-2 .leaf-3 {
+    bottom: 90px;
+    width: 108.63px;
+    left: calc(50% - 54.315px);
+  }
+  .tree-2 .leaf::before, .tree-2 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.08px;
+    height: 16.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-2 .leaf::before {
+    left: 50%;
+  }
+  .tree-2 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-3 {
+    position: absolute;
+    left: 2vw;
+    bottom: -2vh;
+    height: 228px;
+    width: 112px;
+    z-index: 100;
+  }
+  .tree-3 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 57px;
+    left: calc(50% - 12.5px);
+    background: #8B4513;
+  }
+  .tree-3 .leaf, .tree-3 .leaf-2, .tree-3 .leaf-3 {
+    position: absolute;
+    height: 39px;
+    background: rgb(0, 157, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 157, 0));
+    border-radius: 50%;
+  }
+  .tree-3 .leaf {
+    bottom: 50px;
+    width: 157px;
+    left: calc(50% - 78.5px);
+  }
+  .tree-3 .leaf-2 {
+    bottom: 70px;
+    width: 135.02px;
+    left: calc(50% - 67.51px);
+  }
+  .tree-3 .leaf-3 {
+    bottom: 90px;
+    width: 111.47px;
+    left: calc(50% - 55.735px);
+  }
+  .tree-3 .leaf::before, .tree-3 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.52px;
+    height: 19.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-3 .leaf::before {
+    left: 50%;
+  }
+  .tree-3 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-4 {
+    position: absolute;
+    left: 6vw;
+    bottom: -1vh;
+    height: 214px;
+    width: 106px;
+    z-index: 100;
+  }
+  .tree-4 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 52px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-4 .leaf, .tree-4 .leaf-2, .tree-4 .leaf-3 {
+    position: absolute;
+    height: 36px;
+    background: rgb(0, 187, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 187, 0));
+    border-radius: 50%;
+  }
+  .tree-4 .leaf {
+    bottom: 50px;
+    width: 153px;
+    left: calc(50% - 76.5px);
+  }
+  .tree-4 .leaf-2 {
+    bottom: 70px;
+    width: 131.58px;
+    left: calc(50% - 65.79px);
+  }
+  .tree-4 .leaf-3 {
+    bottom: 90px;
+    width: 108.63px;
+    left: calc(50% - 54.315px);
+  }
+  .tree-4 .leaf::before, .tree-4 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.08px;
+    height: 18px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-4 .leaf::before {
+    left: 50%;
+  }
+  .tree-4 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-5 {
+    position: absolute;
+    left: 10vw;
+    bottom: -8vh;
+    height: 204px;
+    width: 112px;
+    z-index: 100;
+  }
+  .tree-5 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 59px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-5 .leaf, .tree-5 .leaf-2, .tree-5 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 8, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 8, 0));
+    border-radius: 50%;
+  }
+  .tree-5 .leaf {
+    bottom: 50px;
+    width: 141px;
+    left: calc(50% - 70.5px);
+  }
+  .tree-5 .leaf-2 {
+    bottom: 70px;
+    width: 121.26px;
+    left: calc(50% - 60.63px);
+  }
+  .tree-5 .leaf-3 {
+    bottom: 90px;
+    width: 100.11px;
+    left: calc(50% - 50.055px);
+  }
+  .tree-5 .leaf::before, .tree-5 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 50.76px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-5 .leaf::before {
+    left: 50%;
+  }
+  .tree-5 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-6 {
+    position: absolute;
+    left: 14vw;
+    bottom: -8vh;
+    height: 215px;
+    width: 107px;
+    z-index: 100;
+  }
+  .tree-6 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 53px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-6 .leaf, .tree-6 .leaf-2, .tree-6 .leaf-3 {
+    position: absolute;
+    height: 31px;
+    background: rgb(0, 121, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 121, 0));
+    border-radius: 50%;
+  }
+  .tree-6 .leaf {
+    bottom: 50px;
+    width: 157px;
+    left: calc(50% - 78.5px);
+  }
+  .tree-6 .leaf-2 {
+    bottom: 70px;
+    width: 135.02px;
+    left: calc(50% - 67.51px);
+  }
+  .tree-6 .leaf-3 {
+    bottom: 90px;
+    width: 111.47px;
+    left: calc(50% - 55.735px);
+  }
+  .tree-6 .leaf::before, .tree-6 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.52px;
+    height: 15.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-6 .leaf::before {
+    left: 50%;
+  }
+  .tree-6 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-7 {
+    position: absolute;
+    left: 17vw;
+    bottom: -4vh;
+    height: 221px;
+    width: 103px;
+    z-index: 100;
+  }
+  .tree-7 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 56px;
+    left: calc(50% - 12.5px);
+    background: #8B4513;
+  }
+  .tree-7 .leaf, .tree-7 .leaf-2, .tree-7 .leaf-3 {
+    position: absolute;
+    height: 33px;
+    background: rgb(0, 23, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 23, 0));
+    border-radius: 50%;
+  }
+  .tree-7 .leaf {
+    bottom: 50px;
+    width: 148px;
+    left: calc(50% - 74px);
+  }
+  .tree-7 .leaf-2 {
+    bottom: 70px;
+    width: 127.28px;
+    left: calc(50% - 63.64px);
+  }
+  .tree-7 .leaf-3 {
+    bottom: 90px;
+    width: 105.08px;
+    left: calc(50% - 52.54px);
+  }
+  .tree-7 .leaf::before, .tree-7 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 53.28px;
+    height: 16.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-7 .leaf::before {
+    left: 50%;
+  }
+  .tree-7 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-8 {
+    position: absolute;
+    left: 21vw;
+    bottom: -6vh;
+    height: 217px;
+    width: 104px;
+    z-index: 100;
+  }
+  .tree-8 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 51px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-8 .leaf, .tree-8 .leaf-2, .tree-8 .leaf-3 {
+    position: absolute;
+    height: 35px;
+    background: rgb(0, 204, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 204, 0));
+    border-radius: 50%;
+  }
+  .tree-8 .leaf {
+    bottom: 50px;
+    width: 142px;
+    left: calc(50% - 71px);
+  }
+  .tree-8 .leaf-2 {
+    bottom: 70px;
+    width: 122.12px;
+    left: calc(50% - 61.06px);
+  }
+  .tree-8 .leaf-3 {
+    bottom: 90px;
+    width: 100.82px;
+    left: calc(50% - 50.41px);
+  }
+  .tree-8 .leaf::before, .tree-8 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 51.12px;
+    height: 17.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-8 .leaf::before {
+    left: 50%;
+  }
+  .tree-8 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-9 {
+    position: absolute;
+    left: 25vw;
+    bottom: 0vh;
+    height: 202px;
+    width: 103px;
+    z-index: 100;
+  }
+  .tree-9 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 60px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-9 .leaf, .tree-9 .leaf-2, .tree-9 .leaf-3 {
+    position: absolute;
+    height: 37px;
+    background: rgb(0, 76, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 76, 0));
+    border-radius: 50%;
+  }
+  .tree-9 .leaf {
+    bottom: 50px;
+    width: 157px;
+    left: calc(50% - 78.5px);
+  }
+  .tree-9 .leaf-2 {
+    bottom: 70px;
+    width: 135.02px;
+    left: calc(50% - 67.51px);
+  }
+  .tree-9 .leaf-3 {
+    bottom: 90px;
+    width: 111.47px;
+    left: calc(50% - 55.735px);
+  }
+  .tree-9 .leaf::before, .tree-9 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.52px;
+    height: 18.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-9 .leaf::before {
+    left: 50%;
+  }
+  .tree-9 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-10 {
+    position: absolute;
+    left: 30vw;
+    bottom: -5vh;
+    height: 207px;
+    width: 111px;
+    z-index: 100;
+  }
+  .tree-10 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 53px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-10 .leaf, .tree-10 .leaf-2, .tree-10 .leaf-3 {
+    position: absolute;
+    height: 33px;
+    background: rgb(0, 170, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 170, 0));
+    border-radius: 50%;
+  }
+  .tree-10 .leaf {
+    bottom: 50px;
+    width: 155px;
+    left: calc(50% - 77.5px);
+  }
+  .tree-10 .leaf-2 {
+    bottom: 70px;
+    width: 133.3px;
+    left: calc(50% - 66.65px);
+  }
+  .tree-10 .leaf-3 {
+    bottom: 90px;
+    width: 110.05px;
+    left: calc(50% - 55.025px);
+  }
+  .tree-10 .leaf::before, .tree-10 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.8px;
+    height: 16.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-10 .leaf::before {
+    left: 50%;
+  }
+  .tree-10 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-11 {
+    position: absolute;
+    left: 33vw;
+    bottom: -3vh;
+    height: 207px;
+    width: 101px;
+    z-index: 100;
+  }
+  .tree-11 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 55px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-11 .leaf, .tree-11 .leaf-2, .tree-11 .leaf-3 {
+    position: absolute;
+    height: 40px;
+    background: rgb(0, 101, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 101, 0));
+    border-radius: 50%;
+  }
+  .tree-11 .leaf {
+    bottom: 50px;
+    width: 159px;
+    left: calc(50% - 79.5px);
+  }
+  .tree-11 .leaf-2 {
+    bottom: 70px;
+    width: 136.74px;
+    left: calc(50% - 68.37px);
+  }
+  .tree-11 .leaf-3 {
+    bottom: 90px;
+    width: 112.89px;
+    left: calc(50% - 56.445px);
+  }
+  .tree-11 .leaf::before, .tree-11 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 57.24px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-11 .leaf::before {
+    left: 50%;
+  }
+  .tree-11 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-12 {
+    position: absolute;
+    left: 37vw;
+    bottom: 0vh;
+    height: 213px;
+    width: 105px;
+    z-index: 100;
+  }
+  .tree-12 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 56px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-12 .leaf, .tree-12 .leaf-2, .tree-12 .leaf-3 {
+    position: absolute;
+    height: 32px;
+    background: rgb(0, 60, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 60, 0));
+    border-radius: 50%;
+  }
+  .tree-12 .leaf {
+    bottom: 50px;
+    width: 155px;
+    left: calc(50% - 77.5px);
+  }
+  .tree-12 .leaf-2 {
+    bottom: 70px;
+    width: 133.3px;
+    left: calc(50% - 66.65px);
+  }
+  .tree-12 .leaf-3 {
+    bottom: 90px;
+    width: 110.05px;
+    left: calc(50% - 55.025px);
+  }
+  .tree-12 .leaf::before, .tree-12 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.8px;
+    height: 16px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-12 .leaf::before {
+    left: 50%;
+  }
+  .tree-12 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-13 {
+    position: absolute;
+    left: 42vw;
+    bottom: 0vh;
+    height: 210px;
+    width: 117px;
+    z-index: 100;
+  }
+  .tree-13 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 21px;
+    height: 56px;
+    left: calc(50% - 10.5px);
+    background: #8B4513;
+  }
+  .tree-13 .leaf, .tree-13 .leaf-2, .tree-13 .leaf-3 {
+    position: absolute;
+    height: 31px;
+    background: rgb(0, 90, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 90, 0));
+    border-radius: 50%;
+  }
+  .tree-13 .leaf {
+    bottom: 50px;
+    width: 142px;
+    left: calc(50% - 71px);
+  }
+  .tree-13 .leaf-2 {
+    bottom: 70px;
+    width: 122.12px;
+    left: calc(50% - 61.06px);
+  }
+  .tree-13 .leaf-3 {
+    bottom: 90px;
+    width: 100.82px;
+    left: calc(50% - 50.41px);
+  }
+  .tree-13 .leaf::before, .tree-13 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 51.12px;
+    height: 15.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-13 .leaf::before {
+    left: 50%;
+  }
+  .tree-13 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-14 {
+    position: absolute;
+    left: 45vw;
+    bottom: -5vh;
+    height: 203px;
+    width: 113px;
+    z-index: 100;
+  }
+  .tree-14 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 60px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-14 .leaf, .tree-14 .leaf-2, .tree-14 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 215, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 215, 0));
+    border-radius: 50%;
+  }
+  .tree-14 .leaf {
+    bottom: 50px;
+    width: 153px;
+    left: calc(50% - 76.5px);
+  }
+  .tree-14 .leaf-2 {
+    bottom: 70px;
+    width: 131.58px;
+    left: calc(50% - 65.79px);
+  }
+  .tree-14 .leaf-3 {
+    bottom: 90px;
+    width: 108.63px;
+    left: calc(50% - 54.315px);
+  }
+  .tree-14 .leaf::before, .tree-14 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.08px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-14 .leaf::before {
+    left: 50%;
+  }
+  .tree-14 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-15 {
+    position: absolute;
+    left: 49vw;
+    bottom: 0vh;
+    height: 218px;
+    width: 112px;
+    z-index: 100;
+  }
+  .tree-15 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 58px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-15 .leaf, .tree-15 .leaf-2, .tree-15 .leaf-3 {
+    position: absolute;
+    height: 40px;
+    background: rgb(0, 32, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 32, 0));
+    border-radius: 50%;
+  }
+  .tree-15 .leaf {
+    bottom: 50px;
+    width: 145px;
+    left: calc(50% - 72.5px);
+  }
+  .tree-15 .leaf-2 {
+    bottom: 70px;
+    width: 124.7px;
+    left: calc(50% - 62.35px);
+  }
+  .tree-15 .leaf-3 {
+    bottom: 90px;
+    width: 102.95px;
+    left: calc(50% - 51.475px);
+  }
+  .tree-15 .leaf::before, .tree-15 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 52.2px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-15 .leaf::before {
+    left: 50%;
+  }
+  .tree-15 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-16 {
+    position: absolute;
+    left: 54vw;
+    bottom: -6vh;
+    height: 205px;
+    width: 106px;
+    z-index: 100;
+  }
+  .tree-16 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 55px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-16 .leaf, .tree-16 .leaf-2, .tree-16 .leaf-3 {
+    position: absolute;
+    height: 31px;
+    background: rgb(0, 220, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 220, 0));
+    border-radius: 50%;
+  }
+  .tree-16 .leaf {
+    bottom: 50px;
+    width: 158px;
+    left: calc(50% - 79px);
+  }
+  .tree-16 .leaf-2 {
+    bottom: 70px;
+    width: 135.88px;
+    left: calc(50% - 67.94px);
+  }
+  .tree-16 .leaf-3 {
+    bottom: 90px;
+    width: 112.18px;
+    left: calc(50% - 56.09px);
+  }
+  .tree-16 .leaf::before, .tree-16 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.88px;
+    height: 15.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-16 .leaf::before {
+    left: 50%;
+  }
+  .tree-16 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-17 {
+    position: absolute;
+    left: 58vw;
+    bottom: -9vh;
+    height: 212px;
+    width: 103px;
+    z-index: 100;
+  }
+  .tree-17 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 56px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-17 .leaf, .tree-17 .leaf-2, .tree-17 .leaf-3 {
+    position: absolute;
+    height: 35px;
+    background: rgb(0, 192, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 192, 0));
+    border-radius: 50%;
+  }
+  .tree-17 .leaf {
+    bottom: 50px;
+    width: 156px;
+    left: calc(50% - 78px);
+  }
+  .tree-17 .leaf-2 {
+    bottom: 70px;
+    width: 134.16px;
+    left: calc(50% - 67.08px);
+  }
+  .tree-17 .leaf-3 {
+    bottom: 90px;
+    width: 110.76px;
+    left: calc(50% - 55.38px);
+  }
+  .tree-17 .leaf::before, .tree-17 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.16px;
+    height: 17.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-17 .leaf::before {
+    left: 50%;
+  }
+  .tree-17 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-18 {
+    position: absolute;
+    left: 61vw;
+    bottom: -3vh;
+    height: 223px;
+    width: 120px;
+    z-index: 100;
+  }
+  .tree-18 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 51px;
+    left: calc(50% - 12.5px);
+    background: #8B4513;
+  }
+  .tree-18 .leaf, .tree-18 .leaf-2, .tree-18 .leaf-3 {
+    position: absolute;
+    height: 35px;
+    background: rgb(0, 52, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 52, 0));
+    border-radius: 50%;
+  }
+  .tree-18 .leaf {
+    bottom: 50px;
+    width: 154px;
+    left: calc(50% - 77px);
+  }
+  .tree-18 .leaf-2 {
+    bottom: 70px;
+    width: 132.44px;
+    left: calc(50% - 66.22px);
+  }
+  .tree-18 .leaf-3 {
+    bottom: 90px;
+    width: 109.34px;
+    left: calc(50% - 54.67px);
+  }
+  .tree-18 .leaf::before, .tree-18 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.44px;
+    height: 17.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-18 .leaf::before {
+    left: 50%;
+  }
+  .tree-18 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-19 {
+    position: absolute;
+    left: 65vw;
+    bottom: -4vh;
+    height: 223px;
+    width: 101px;
+    z-index: 100;
+  }
+  .tree-19 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 21px;
+    height: 52px;
+    left: calc(50% - 10.5px);
+    background: #8B4513;
+  }
+  .tree-19 .leaf, .tree-19 .leaf-2, .tree-19 .leaf-3 {
+    position: absolute;
+    height: 33px;
+    background: rgb(0, 182, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 182, 0));
+    border-radius: 50%;
+  }
+  .tree-19 .leaf {
+    bottom: 50px;
+    width: 155px;
+    left: calc(50% - 77.5px);
+  }
+  .tree-19 .leaf-2 {
+    bottom: 70px;
+    width: 133.3px;
+    left: calc(50% - 66.65px);
+  }
+  .tree-19 .leaf-3 {
+    bottom: 90px;
+    width: 110.05px;
+    left: calc(50% - 55.025px);
+  }
+  .tree-19 .leaf::before, .tree-19 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.8px;
+    height: 16.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-19 .leaf::before {
+    left: 50%;
+  }
+  .tree-19 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-20 {
+    position: absolute;
+    left: 69vw;
+    bottom: -1vh;
+    height: 228px;
+    width: 102px;
+    z-index: 100;
+  }
+  .tree-20 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 21px;
+    height: 56px;
+    left: calc(50% - 10.5px);
+    background: #8B4513;
+  }
+  .tree-20 .leaf, .tree-20 .leaf-2, .tree-20 .leaf-3 {
+    position: absolute;
+    height: 32px;
+    background: rgb(0, 114, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 114, 0));
+    border-radius: 50%;
+  }
+  .tree-20 .leaf {
+    bottom: 50px;
+    width: 149px;
+    left: calc(50% - 74.5px);
+  }
+  .tree-20 .leaf-2 {
+    bottom: 70px;
+    width: 128.14px;
+    left: calc(50% - 64.07px);
+  }
+  .tree-20 .leaf-3 {
+    bottom: 90px;
+    width: 105.79px;
+    left: calc(50% - 52.895px);
+  }
+  .tree-20 .leaf::before, .tree-20 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 53.64px;
+    height: 16px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-20 .leaf::before {
+    left: 50%;
+  }
+  .tree-20 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-21 {
+    position: absolute;
+    left: 73vw;
+    bottom: -3vh;
+    height: 225px;
+    width: 107px;
+    z-index: 100;
+  }
+  .tree-21 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 55px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-21 .leaf, .tree-21 .leaf-2, .tree-21 .leaf-3 {
+    position: absolute;
+    height: 31px;
+    background: rgb(0, 245, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 245, 0));
+    border-radius: 50%;
+  }
+  .tree-21 .leaf {
+    bottom: 50px;
+    width: 154px;
+    left: calc(50% - 77px);
+  }
+  .tree-21 .leaf-2 {
+    bottom: 70px;
+    width: 132.44px;
+    left: calc(50% - 66.22px);
+  }
+  .tree-21 .leaf-3 {
+    bottom: 90px;
+    width: 109.34px;
+    left: calc(50% - 54.67px);
+  }
+  .tree-21 .leaf::before, .tree-21 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.44px;
+    height: 15.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-21 .leaf::before {
+    left: 50%;
+  }
+  .tree-21 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-22 {
+    position: absolute;
+    left: 77vw;
+    bottom: -4vh;
+    height: 227px;
+    width: 114px;
+    z-index: 100;
+  }
+  .tree-22 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 58px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-22 .leaf, .tree-22 .leaf-2, .tree-22 .leaf-3 {
+    position: absolute;
+    height: 38px;
+    background: rgb(0, 18, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 18, 0));
+    border-radius: 50%;
+  }
+  .tree-22 .leaf {
+    bottom: 50px;
+    width: 154px;
+    left: calc(50% - 77px);
+  }
+  .tree-22 .leaf-2 {
+    bottom: 70px;
+    width: 132.44px;
+    left: calc(50% - 66.22px);
+  }
+  .tree-22 .leaf-3 {
+    bottom: 90px;
+    width: 109.34px;
+    left: calc(50% - 54.67px);
+  }
+  .tree-22 .leaf::before, .tree-22 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.44px;
+    height: 19px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-22 .leaf::before {
+    left: 50%;
+  }
+  .tree-22 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-23 {
+    position: absolute;
+    left: 81vw;
+    bottom: -4vh;
+    height: 217px;
+    width: 103px;
+    z-index: 100;
+  }
+  .tree-23 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 60px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-23 .leaf, .tree-23 .leaf-2, .tree-23 .leaf-3 {
+    position: absolute;
+    height: 31px;
+    background: rgb(0, 210, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 210, 0));
+    border-radius: 50%;
+  }
+  .tree-23 .leaf {
+    bottom: 50px;
+    width: 143px;
+    left: calc(50% - 71.5px);
+  }
+  .tree-23 .leaf-2 {
+    bottom: 70px;
+    width: 122.98px;
+    left: calc(50% - 61.49px);
+  }
+  .tree-23 .leaf-3 {
+    bottom: 90px;
+    width: 101.53px;
+    left: calc(50% - 50.765px);
+  }
+  .tree-23 .leaf::before, .tree-23 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 51.48px;
+    height: 15.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-23 .leaf::before {
+    left: 50%;
+  }
+  .tree-23 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-24 {
+    position: absolute;
+    left: 86vw;
+    bottom: -8vh;
+    height: 210px;
+    width: 103px;
+    z-index: 100;
+  }
+  .tree-24 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 57px;
+    left: calc(50% - 12.5px);
+    background: #8B4513;
+  }
+  .tree-24 .leaf, .tree-24 .leaf-2, .tree-24 .leaf-3 {
+    position: absolute;
+    height: 35px;
+    background: rgb(0, 248, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 248, 0));
+    border-radius: 50%;
+  }
+  .tree-24 .leaf {
+    bottom: 50px;
+    width: 155px;
+    left: calc(50% - 77.5px);
+  }
+  .tree-24 .leaf-2 {
+    bottom: 70px;
+    width: 133.3px;
+    left: calc(50% - 66.65px);
+  }
+  .tree-24 .leaf-3 {
+    bottom: 90px;
+    width: 110.05px;
+    left: calc(50% - 55.025px);
+  }
+  .tree-24 .leaf::before, .tree-24 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.8px;
+    height: 17.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-24 .leaf::before {
+    left: 50%;
+  }
+  .tree-24 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-25 {
+    position: absolute;
+    left: 90vw;
+    bottom: -5vh;
+    height: 219px;
+    width: 110px;
+    z-index: 100;
+  }
+  .tree-25 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 55px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-25 .leaf, .tree-25 .leaf-2, .tree-25 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 12, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 12, 0));
+    border-radius: 50%;
+  }
+  .tree-25 .leaf {
+    bottom: 50px;
+    width: 149px;
+    left: calc(50% - 74.5px);
+  }
+  .tree-25 .leaf-2 {
+    bottom: 70px;
+    width: 128.14px;
+    left: calc(50% - 64.07px);
+  }
+  .tree-25 .leaf-3 {
+    bottom: 90px;
+    width: 105.79px;
+    left: calc(50% - 52.895px);
+  }
+  .tree-25 .leaf::before, .tree-25 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 53.64px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-25 .leaf::before {
+    left: 50%;
+  }
+  .tree-25 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-26 {
+    position: absolute;
+    left: 94vw;
+    bottom: -9vh;
+    height: 211px;
+    width: 112px;
+    z-index: 100;
+  }
+  .tree-26 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 58px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-26 .leaf, .tree-26 .leaf-2, .tree-26 .leaf-3 {
+    position: absolute;
+    height: 38px;
+    background: rgb(0, 219, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 219, 0));
+    border-radius: 50%;
+  }
+  .tree-26 .leaf {
+    bottom: 50px;
+    width: 143px;
+    left: calc(50% - 71.5px);
+  }
+  .tree-26 .leaf-2 {
+    bottom: 70px;
+    width: 122.98px;
+    left: calc(50% - 61.49px);
+  }
+  .tree-26 .leaf-3 {
+    bottom: 90px;
+    width: 101.53px;
+    left: calc(50% - 50.765px);
+  }
+  .tree-26 .leaf::before, .tree-26 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 51.48px;
+    height: 19px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-26 .leaf::before {
+    left: 50%;
+  }
+  .tree-26 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-27 {
+    position: absolute;
+    left: 97vw;
+    bottom: -5vh;
+    height: 228px;
+    width: 116px;
+    z-index: 100;
+  }
+  .tree-27 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 52px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-27 .leaf, .tree-27 .leaf-2, .tree-27 .leaf-3 {
+    position: absolute;
+    height: 33px;
+    background: rgb(0, 78, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 78, 0));
+    border-radius: 50%;
+  }
+  .tree-27 .leaf {
+    bottom: 50px;
+    width: 156px;
+    left: calc(50% - 78px);
+  }
+  .tree-27 .leaf-2 {
+    bottom: 70px;
+    width: 134.16px;
+    left: calc(50% - 67.08px);
+  }
+  .tree-27 .leaf-3 {
+    bottom: 90px;
+    width: 110.76px;
+    left: calc(50% - 55.38px);
+  }
+  .tree-27 .leaf::before, .tree-27 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.16px;
+    height: 16.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-27 .leaf::before {
+    left: 50%;
+  }
+  .tree-27 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-28 {
+    position: absolute;
+    left: 101vw;
+    bottom: -6vh;
+    height: 227px;
+    width: 107px;
+    z-index: 100;
+  }
+  .tree-28 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 58px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-28 .leaf, .tree-28 .leaf-2, .tree-28 .leaf-3 {
+    position: absolute;
+    height: 40px;
+    background: rgb(0, 184, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 184, 0));
+    border-radius: 50%;
+  }
+  .tree-28 .leaf {
+    bottom: 50px;
+    width: 149px;
+    left: calc(50% - 74.5px);
+  }
+  .tree-28 .leaf-2 {
+    bottom: 70px;
+    width: 128.14px;
+    left: calc(50% - 64.07px);
+  }
+  .tree-28 .leaf-3 {
+    bottom: 90px;
+    width: 105.79px;
+    left: calc(50% - 52.895px);
+  }
+  .tree-28 .leaf::before, .tree-28 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 53.64px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-28 .leaf::before {
+    left: 50%;
+  }
+  .tree-28 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-29 {
+    position: absolute;
+    left: 105vw;
+    bottom: -5vh;
+    height: 220px;
+    width: 113px;
+    z-index: 100;
+  }
+  .tree-29 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 59px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-29 .leaf, .tree-29 .leaf-2, .tree-29 .leaf-3 {
+    position: absolute;
+    height: 37px;
+    background: rgb(0, 67, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 67, 0));
+    border-radius: 50%;
+  }
+  .tree-29 .leaf {
+    bottom: 50px;
+    width: 160px;
+    left: calc(50% - 80px);
+  }
+  .tree-29 .leaf-2 {
+    bottom: 70px;
+    width: 137.6px;
+    left: calc(50% - 68.8px);
+  }
+  .tree-29 .leaf-3 {
+    bottom: 90px;
+    width: 113.6px;
+    left: calc(50% - 56.8px);
+  }
+  .tree-29 .leaf::before, .tree-29 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 57.6px;
+    height: 18.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-29 .leaf::before {
+    left: 50%;
+  }
+  .tree-29 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-30 {
+    position: absolute;
+    left: 109vw;
+    bottom: -3vh;
+    height: 201px;
+    width: 107px;
+    z-index: 100;
+  }
+  .tree-30 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 55px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-30 .leaf, .tree-30 .leaf-2, .tree-30 .leaf-3 {
+    position: absolute;
+    height: 38px;
+    background: rgb(0, 246, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 246, 0));
+    border-radius: 50%;
+  }
+  .tree-30 .leaf {
+    bottom: 50px;
+    width: 155px;
+    left: calc(50% - 77.5px);
+  }
+  .tree-30 .leaf-2 {
+    bottom: 70px;
+    width: 133.3px;
+    left: calc(50% - 66.65px);
+  }
+  .tree-30 .leaf-3 {
+    bottom: 90px;
+    width: 110.05px;
+    left: calc(50% - 55.025px);
+  }
+  .tree-30 .leaf::before, .tree-30 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.8px;
+    height: 19px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-30 .leaf::before {
+    left: 50%;
+  }
+  .tree-30 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-31 {
+    position: absolute;
+    left: 113vw;
+    bottom: -2vh;
+    height: 204px;
+    width: 112px;
+    z-index: 100;
+  }
+  .tree-31 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 58px;
+    left: calc(50% - 12.5px);
+    background: #8B4513;
+  }
+  .tree-31 .leaf, .tree-31 .leaf-2, .tree-31 .leaf-3 {
+    position: absolute;
+    height: 35px;
+    background: rgb(0, 216, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 216, 0));
+    border-radius: 50%;
+  }
+  .tree-31 .leaf {
+    bottom: 50px;
+    width: 148px;
+    left: calc(50% - 74px);
+  }
+  .tree-31 .leaf-2 {
+    bottom: 70px;
+    width: 127.28px;
+    left: calc(50% - 63.64px);
+  }
+  .tree-31 .leaf-3 {
+    bottom: 90px;
+    width: 105.08px;
+    left: calc(50% - 52.54px);
+  }
+  .tree-31 .leaf::before, .tree-31 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 53.28px;
+    height: 17.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-31 .leaf::before {
+    left: 50%;
+  }
+  .tree-31 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-32 {
+    position: absolute;
+    left: 117vw;
+    bottom: 0vh;
+    height: 220px;
+    width: 105px;
+    z-index: 100;
+  }
+  .tree-32 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 21px;
+    height: 51px;
+    left: calc(50% - 10.5px);
+    background: #8B4513;
+  }
+  .tree-32 .leaf, .tree-32 .leaf-2, .tree-32 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 175, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 175, 0));
+    border-radius: 50%;
+  }
+  .tree-32 .leaf {
+    bottom: 50px;
+    width: 148px;
+    left: calc(50% - 74px);
+  }
+  .tree-32 .leaf-2 {
+    bottom: 70px;
+    width: 127.28px;
+    left: calc(50% - 63.64px);
+  }
+  .tree-32 .leaf-3 {
+    bottom: 90px;
+    width: 105.08px;
+    left: calc(50% - 52.54px);
+  }
+  .tree-32 .leaf::before, .tree-32 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 53.28px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-32 .leaf::before {
+    left: 50%;
+  }
+  .tree-32 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-33 {
+    position: absolute;
+    left: 122vw;
+    bottom: -4vh;
+    height: 215px;
+    width: 111px;
+    z-index: 100;
+  }
+  .tree-33 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 52px;
+    left: calc(50% - 12.5px);
+    background: #8B4513;
+  }
+  .tree-33 .leaf, .tree-33 .leaf-2, .tree-33 .leaf-3 {
+    position: absolute;
+    height: 36px;
+    background: rgb(0, 136, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 136, 0));
+    border-radius: 50%;
+  }
+  .tree-33 .leaf {
+    bottom: 50px;
+    width: 151px;
+    left: calc(50% - 75.5px);
+  }
+  .tree-33 .leaf-2 {
+    bottom: 70px;
+    width: 129.86px;
+    left: calc(50% - 64.93px);
+  }
+  .tree-33 .leaf-3 {
+    bottom: 90px;
+    width: 107.21px;
+    left: calc(50% - 53.605px);
+  }
+  .tree-33 .leaf::before, .tree-33 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 54.36px;
+    height: 18px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-33 .leaf::before {
+    left: 50%;
+  }
+  .tree-33 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-34 {
+    position: absolute;
+    left: 125vw;
+    bottom: -2vh;
+    height: 215px;
+    width: 114px;
+    z-index: 100;
+  }
+  .tree-34 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 21px;
+    height: 56px;
+    left: calc(50% - 10.5px);
+    background: #8B4513;
+  }
+  .tree-34 .leaf, .tree-34 .leaf-2, .tree-34 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 188, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 188, 0));
+    border-radius: 50%;
+  }
+  .tree-34 .leaf {
+    bottom: 50px;
+    width: 159px;
+    left: calc(50% - 79.5px);
+  }
+  .tree-34 .leaf-2 {
+    bottom: 70px;
+    width: 136.74px;
+    left: calc(50% - 68.37px);
+  }
+  .tree-34 .leaf-3 {
+    bottom: 90px;
+    width: 112.89px;
+    left: calc(50% - 56.445px);
+  }
+  .tree-34 .leaf::before, .tree-34 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 57.24px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-34 .leaf::before {
+    left: 50%;
+  }
+  .tree-34 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-35 {
+    position: absolute;
+    left: 130vw;
+    bottom: -4vh;
+    height: 226px;
+    width: 101px;
+    z-index: 100;
+  }
+  .tree-35 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 51px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-35 .leaf, .tree-35 .leaf-2, .tree-35 .leaf-3 {
+    position: absolute;
+    height: 35px;
+    background: rgb(0, 92, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 92, 0));
+    border-radius: 50%;
+  }
+  .tree-35 .leaf {
+    bottom: 50px;
+    width: 153px;
+    left: calc(50% - 76.5px);
+  }
+  .tree-35 .leaf-2 {
+    bottom: 70px;
+    width: 131.58px;
+    left: calc(50% - 65.79px);
+  }
+  .tree-35 .leaf-3 {
+    bottom: 90px;
+    width: 108.63px;
+    left: calc(50% - 54.315px);
+  }
+  .tree-35 .leaf::before, .tree-35 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.08px;
+    height: 17.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-35 .leaf::before {
+    left: 50%;
+  }
+  .tree-35 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-36 {
+    position: absolute;
+    left: 133vw;
+    bottom: -3vh;
+    height: 206px;
+    width: 115px;
+    z-index: 100;
+  }
+  .tree-36 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 55px;
+    left: calc(50% - 12.5px);
+    background: #8B4513;
+  }
+  .tree-36 .leaf, .tree-36 .leaf-2, .tree-36 .leaf-3 {
+    position: absolute;
+    height: 35px;
+    background: rgb(0, 210, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 210, 0));
+    border-radius: 50%;
+  }
+  .tree-36 .leaf {
+    bottom: 50px;
+    width: 157px;
+    left: calc(50% - 78.5px);
+  }
+  .tree-36 .leaf-2 {
+    bottom: 70px;
+    width: 135.02px;
+    left: calc(50% - 67.51px);
+  }
+  .tree-36 .leaf-3 {
+    bottom: 90px;
+    width: 111.47px;
+    left: calc(50% - 55.735px);
+  }
+  .tree-36 .leaf::before, .tree-36 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.52px;
+    height: 17.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-36 .leaf::before {
+    left: 50%;
+  }
+  .tree-36 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-37 {
+    position: absolute;
+    left: 137vw;
+    bottom: -3vh;
+    height: 206px;
+    width: 116px;
+    z-index: 100;
+  }
+  .tree-37 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 52px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-37 .leaf, .tree-37 .leaf-2, .tree-37 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 65, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 65, 0));
+    border-radius: 50%;
+  }
+  .tree-37 .leaf {
+    bottom: 50px;
+    width: 154px;
+    left: calc(50% - 77px);
+  }
+  .tree-37 .leaf-2 {
+    bottom: 70px;
+    width: 132.44px;
+    left: calc(50% - 66.22px);
+  }
+  .tree-37 .leaf-3 {
+    bottom: 90px;
+    width: 109.34px;
+    left: calc(50% - 54.67px);
+  }
+  .tree-37 .leaf::before, .tree-37 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.44px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-37 .leaf::before {
+    left: 50%;
+  }
+  .tree-37 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-38 {
+    position: absolute;
+    left: 142vw;
+    bottom: -2vh;
+    height: 208px;
+    width: 110px;
+    z-index: 100;
+  }
+  .tree-38 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 58px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-38 .leaf, .tree-38 .leaf-2, .tree-38 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 70, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 70, 0));
+    border-radius: 50%;
+  }
+  .tree-38 .leaf {
+    bottom: 50px;
+    width: 148px;
+    left: calc(50% - 74px);
+  }
+  .tree-38 .leaf-2 {
+    bottom: 70px;
+    width: 127.28px;
+    left: calc(50% - 63.64px);
+  }
+  .tree-38 .leaf-3 {
+    bottom: 90px;
+    width: 105.08px;
+    left: calc(50% - 52.54px);
+  }
+  .tree-38 .leaf::before, .tree-38 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 53.28px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-38 .leaf::before {
+    left: 50%;
+  }
+  .tree-38 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-39 {
+    position: absolute;
+    left: 145vw;
+    bottom: -8vh;
+    height: 220px;
+    width: 120px;
+    z-index: 100;
+  }
+  .tree-39 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 57px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-39 .leaf, .tree-39 .leaf-2, .tree-39 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 7, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 7, 0));
+    border-radius: 50%;
+  }
+  .tree-39 .leaf {
+    bottom: 50px;
+    width: 152px;
+    left: calc(50% - 76px);
+  }
+  .tree-39 .leaf-2 {
+    bottom: 70px;
+    width: 130.72px;
+    left: calc(50% - 65.36px);
+  }
+  .tree-39 .leaf-3 {
+    bottom: 90px;
+    width: 107.92px;
+    left: calc(50% - 53.96px);
+  }
+  .tree-39 .leaf::before, .tree-39 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 54.72px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-39 .leaf::before {
+    left: 50%;
+  }
+  .tree-39 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-40 {
+    position: absolute;
+    left: 150vw;
+    bottom: -2vh;
+    height: 208px;
+    width: 101px;
+    z-index: 100;
+  }
+  .tree-40 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 25px;
+    height: 58px;
+    left: calc(50% - 12.5px);
+    background: #8B4513;
+  }
+  .tree-40 .leaf, .tree-40 .leaf-2, .tree-40 .leaf-3 {
+    position: absolute;
+    height: 35px;
+    background: rgb(0, 45, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 45, 0));
+    border-radius: 50%;
+  }
+  .tree-40 .leaf {
+    bottom: 50px;
+    width: 154px;
+    left: calc(50% - 77px);
+  }
+  .tree-40 .leaf-2 {
+    bottom: 70px;
+    width: 132.44px;
+    left: calc(50% - 66.22px);
+  }
+  .tree-40 .leaf-3 {
+    bottom: 90px;
+    width: 109.34px;
+    left: calc(50% - 54.67px);
+  }
+  .tree-40 .leaf::before, .tree-40 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.44px;
+    height: 17.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-40 .leaf::before {
+    left: 50%;
+  }
+  .tree-40 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-41 {
+    position: absolute;
+    left: 153vw;
+    bottom: -7vh;
+    height: 227px;
+    width: 115px;
+    z-index: 100;
+  }
+  .tree-41 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 54px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-41 .leaf, .tree-41 .leaf-2, .tree-41 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 63, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 63, 0));
+    border-radius: 50%;
+  }
+  .tree-41 .leaf {
+    bottom: 50px;
+    width: 157px;
+    left: calc(50% - 78.5px);
+  }
+  .tree-41 .leaf-2 {
+    bottom: 70px;
+    width: 135.02px;
+    left: calc(50% - 67.51px);
+  }
+  .tree-41 .leaf-3 {
+    bottom: 90px;
+    width: 111.47px;
+    left: calc(50% - 55.735px);
+  }
+  .tree-41 .leaf::before, .tree-41 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.52px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-41 .leaf::before {
+    left: 50%;
+  }
+  .tree-41 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-42 {
+    position: absolute;
+    left: 157vw;
+    bottom: -8vh;
+    height: 215px;
+    width: 104px;
+    z-index: 100;
+  }
+  .tree-42 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 60px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-42 .leaf, .tree-42 .leaf-2, .tree-42 .leaf-3 {
+    position: absolute;
+    height: 32px;
+    background: rgb(0, 105, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 105, 0));
+    border-radius: 50%;
+  }
+  .tree-42 .leaf {
+    bottom: 50px;
+    width: 145px;
+    left: calc(50% - 72.5px);
+  }
+  .tree-42 .leaf-2 {
+    bottom: 70px;
+    width: 124.7px;
+    left: calc(50% - 62.35px);
+  }
+  .tree-42 .leaf-3 {
+    bottom: 90px;
+    width: 102.95px;
+    left: calc(50% - 51.475px);
+  }
+  .tree-42 .leaf::before, .tree-42 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 52.2px;
+    height: 16px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-42 .leaf::before {
+    left: 50%;
+  }
+  .tree-42 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-43 {
+    position: absolute;
+    left: 162vw;
+    bottom: -5vh;
+    height: 214px;
+    width: 105px;
+    z-index: 100;
+  }
+  .tree-43 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 59px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-43 .leaf, .tree-43 .leaf-2, .tree-43 .leaf-3 {
+    position: absolute;
+    height: 38px;
+    background: rgb(0, 118, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 118, 0));
+    border-radius: 50%;
+  }
+  .tree-43 .leaf {
+    bottom: 50px;
+    width: 159px;
+    left: calc(50% - 79.5px);
+  }
+  .tree-43 .leaf-2 {
+    bottom: 70px;
+    width: 136.74px;
+    left: calc(50% - 68.37px);
+  }
+  .tree-43 .leaf-3 {
+    bottom: 90px;
+    width: 112.89px;
+    left: calc(50% - 56.445px);
+  }
+  .tree-43 .leaf::before, .tree-43 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 57.24px;
+    height: 19px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-43 .leaf::before {
+    left: 50%;
+  }
+  .tree-43 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-44 {
+    position: absolute;
+    left: 166vw;
+    bottom: -1vh;
+    height: 205px;
+    width: 116px;
+    z-index: 100;
+  }
+  .tree-44 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 51px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-44 .leaf, .tree-44 .leaf-2, .tree-44 .leaf-3 {
+    position: absolute;
+    height: 37px;
+    background: rgb(0, 136, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 136, 0));
+    border-radius: 50%;
+  }
+  .tree-44 .leaf {
+    bottom: 50px;
+    width: 158px;
+    left: calc(50% - 79px);
+  }
+  .tree-44 .leaf-2 {
+    bottom: 70px;
+    width: 135.88px;
+    left: calc(50% - 67.94px);
+  }
+  .tree-44 .leaf-3 {
+    bottom: 90px;
+    width: 112.18px;
+    left: calc(50% - 56.09px);
+  }
+  .tree-44 .leaf::before, .tree-44 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.88px;
+    height: 18.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-44 .leaf::before {
+    left: 50%;
+  }
+  .tree-44 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-45 {
+    position: absolute;
+    left: 169vw;
+    bottom: -9vh;
+    height: 227px;
+    width: 113px;
+    z-index: 100;
+  }
+  .tree-45 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 21px;
+    height: 56px;
+    left: calc(50% - 10.5px);
+    background: #8B4513;
+  }
+  .tree-45 .leaf, .tree-45 .leaf-2, .tree-45 .leaf-3 {
+    position: absolute;
+    height: 40px;
+    background: rgb(0, 39, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 39, 0));
+    border-radius: 50%;
+  }
+  .tree-45 .leaf {
+    bottom: 50px;
+    width: 153px;
+    left: calc(50% - 76.5px);
+  }
+  .tree-45 .leaf-2 {
+    bottom: 70px;
+    width: 131.58px;
+    left: calc(50% - 65.79px);
+  }
+  .tree-45 .leaf-3 {
+    bottom: 90px;
+    width: 108.63px;
+    left: calc(50% - 54.315px);
+  }
+  .tree-45 .leaf::before, .tree-45 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.08px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-45 .leaf::before {
+    left: 50%;
+  }
+  .tree-45 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-46 {
+    position: absolute;
+    left: 174vw;
+    bottom: -1vh;
+    height: 222px;
+    width: 111px;
+    z-index: 100;
+  }
+  .tree-46 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 24px;
+    height: 54px;
+    left: calc(50% - 12px);
+    background: #8B4513;
+  }
+  .tree-46 .leaf, .tree-46 .leaf-2, .tree-46 .leaf-3 {
+    position: absolute;
+    height: 40px;
+    background: rgb(0, 94, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 94, 0));
+    border-radius: 50%;
+  }
+  .tree-46 .leaf {
+    bottom: 50px;
+    width: 158px;
+    left: calc(50% - 79px);
+  }
+  .tree-46 .leaf-2 {
+    bottom: 70px;
+    width: 135.88px;
+    left: calc(50% - 67.94px);
+  }
+  .tree-46 .leaf-3 {
+    bottom: 90px;
+    width: 112.18px;
+    left: calc(50% - 56.09px);
+  }
+  .tree-46 .leaf::before, .tree-46 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 56.88px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-46 .leaf::before {
+    left: 50%;
+  }
+  .tree-46 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-47 {
+    position: absolute;
+    left: 178vw;
+    bottom: -6vh;
+    height: 228px;
+    width: 104px;
+    z-index: 100;
+  }
+  .tree-47 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 57px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-47 .leaf, .tree-47 .leaf-2, .tree-47 .leaf-3 {
+    position: absolute;
+    height: 40px;
+    background: rgb(0, 183, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 183, 0));
+    border-radius: 50%;
+  }
+  .tree-47 .leaf {
+    bottom: 50px;
+    width: 155px;
+    left: calc(50% - 77.5px);
+  }
+  .tree-47 .leaf-2 {
+    bottom: 70px;
+    width: 133.3px;
+    left: calc(50% - 66.65px);
+  }
+  .tree-47 .leaf-3 {
+    bottom: 90px;
+    width: 110.05px;
+    left: calc(50% - 55.025px);
+  }
+  .tree-47 .leaf::before, .tree-47 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55.8px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-47 .leaf::before {
+    left: 50%;
+  }
+  .tree-47 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-48 {
+    position: absolute;
+    left: 182vw;
+    bottom: -7vh;
+    height: 230px;
+    width: 101px;
+    z-index: 100;
+  }
+  .tree-48 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 22px;
+    height: 54px;
+    left: calc(50% - 11px);
+    background: #8B4513;
+  }
+  .tree-48 .leaf, .tree-48 .leaf-2, .tree-48 .leaf-3 {
+    position: absolute;
+    height: 34px;
+    background: rgb(0, 140, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 140, 0));
+    border-radius: 50%;
+  }
+  .tree-48 .leaf {
+    bottom: 50px;
+    width: 160px;
+    left: calc(50% - 80px);
+  }
+  .tree-48 .leaf-2 {
+    bottom: 70px;
+    width: 137.6px;
+    left: calc(50% - 68.8px);
+  }
+  .tree-48 .leaf-3 {
+    bottom: 90px;
+    width: 113.6px;
+    left: calc(50% - 56.8px);
+  }
+  .tree-48 .leaf::before, .tree-48 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 57.6px;
+    height: 17px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-48 .leaf::before {
+    left: 50%;
+  }
+  .tree-48 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-49 {
+    position: absolute;
+    left: 186vw;
+    bottom: -9vh;
+    height: 225px;
+    width: 107px;
+    z-index: 100;
+  }
+  .tree-49 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 54px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-49 .leaf, .tree-49 .leaf-2, .tree-49 .leaf-3 {
+    position: absolute;
+    height: 39px;
+    background: rgb(0, 97, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 97, 0));
+    border-radius: 50%;
+  }
+  .tree-49 .leaf {
+    bottom: 50px;
+    width: 142px;
+    left: calc(50% - 71px);
+  }
+  .tree-49 .leaf-2 {
+    bottom: 70px;
+    width: 122.12px;
+    left: calc(50% - 61.06px);
+  }
+  .tree-49 .leaf-3 {
+    bottom: 90px;
+    width: 100.82px;
+    left: calc(50% - 50.41px);
+  }
+  .tree-49 .leaf::before, .tree-49 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 51.12px;
+    height: 19.5px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-49 .leaf::before {
+    left: 50%;
+  }
+  .tree-49 .leaf::after {
+    right: 50%;
+  }
+  
+  .tree-50 {
+    position: absolute;
+    left: 189vw;
+    bottom: -4vh;
+    height: 210px;
+    width: 108px;
+    z-index: 100;
+  }
+  .tree-50 .trunk {
+    position: absolute;
+    bottom: 0;
+    width: 23px;
+    height: 51px;
+    left: calc(50% - 11.5px);
+    background: #8B4513;
+  }
+  .tree-50 .leaf, .tree-50 .leaf-2, .tree-50 .leaf-3 {
+    position: absolute;
+    height: 36px;
+    background: rgb(0, 132, 0);
+    background: linear-gradient(45deg, #006400, rgb(0, 132, 0));
+    border-radius: 50%;
+  }
+  .tree-50 .leaf {
+    bottom: 50px;
+    width: 146px;
+    left: calc(50% - 73px);
+  }
+  .tree-50 .leaf-2 {
+    bottom: 70px;
+    width: 125.56px;
+    left: calc(50% - 62.78px);
+  }
+  .tree-50 .leaf-3 {
+    bottom: 90px;
+    width: 103.66px;
+    left: calc(50% - 51.83px);
+  }
+  .tree-50 .leaf::before, .tree-50 .leaf::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 52.56px;
+    height: 18px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .tree-50 .leaf::before {
+    left: 50%;
+  }
+  .tree-50 .leaf::after {
+    right: 50%;
+  }
+  
+  .cloud-1 {
+    position: absolute;
+    top: 26%;
+    left: 31%;
+    height: 60px;
+    width: 65px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-1:before, .cloud-1:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-1:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-1:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-2 {
+    position: absolute;
+    top: 30%;
+    left: 54%;
+    height: 36px;
+    width: 78px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-2:before, .cloud-2:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-2:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-2:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-3 {
+    position: absolute;
+    top: 13%;
+    left: 8%;
+    height: 24px;
+    width: 84px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-3:before, .cloud-3:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-3:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-3:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-4 {
+    position: absolute;
+    top: 8%;
+    left: 24%;
+    height: 43px;
+    width: 94px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-4:before, .cloud-4:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-4:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-4:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-5 {
+    position: absolute;
+    top: 8%;
+    left: 7%;
+    height: 44px;
+    width: 76px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-5:before, .cloud-5:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-5:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-5:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-6 {
+    position: absolute;
+    top: 21%;
+    left: 28%;
+    height: 42px;
+    width: 88px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-6:before, .cloud-6:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-6:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-6:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-7 {
+    position: absolute;
+    top: 14%;
+    left: 65%;
+    height: 21px;
+    width: 88px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-7:before, .cloud-7:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-7:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-7:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-8 {
+    position: absolute;
+    top: 9%;
+    left: 25%;
+    height: 47px;
+    width: 57px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-8:before, .cloud-8:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-8:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-8:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-9 {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    height: 35px;
+    width: 86px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-9:before, .cloud-9:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-9:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-9:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-10 {
+    position: absolute;
+    top: 16%;
+    left: 32%;
+    height: 46px;
+    width: 74px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-10:before, .cloud-10:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-10:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-10:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-11 {
+    position: absolute;
+    top: 4%;
+    left: 69%;
+    height: 37px;
+    width: 74px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-11:before, .cloud-11:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-11:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-11:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-12 {
+    position: absolute;
+    top: 2%;
+    left: 72%;
+    height: 27px;
+    width: 95px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-12:before, .cloud-12:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-12:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-12:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-13 {
+    position: absolute;
+    top: 3%;
+    left: 29%;
+    height: 32px;
+    width: 45px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-13:before, .cloud-13:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-13:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-13:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-14 {
+    position: absolute;
+    top: 6%;
+    left: 1%;
+    height: 55px;
+    width: 59px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-14:before, .cloud-14:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-14:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-14:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
+  
+  .cloud-15 {
+    position: absolute;
+    top: 22%;
+    left: 97%;
+    height: 44px;
+    width: 47px;
+    background: #fff;
+    border-radius: 100px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  .cloud-15:before, .cloud-15:after {
+    content: "";
+    position: absolute;
+    background: #fff;
+    z-index: -1;
+  }
+  .cloud-15:before {
+    width: 50%;
+    height: 80%;
+    border-radius: 100px;
+    left: -10%;
+    top: 20%;
+  }
+  .cloud-15:after {
+    width: 60%;
+    height: 60%;
+    border-radius: 100px;
+    right: -20%;
+    top: -20%;
+  }
