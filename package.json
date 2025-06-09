@@ -2,7 +2,7 @@
   "name": "portfolio_website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://natey37.github.io/NewPortfolio",
+  "homepage": "https://nathanbrickett.dev",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
