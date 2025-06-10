@@ -5,7 +5,7 @@ export default function Projects({projects, currentProject, handleProjectClick, 
   const detailsTitleRef = useRef(null);
 
   useEffect(() => {
-    if(currentProject) detailsTitleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if(currentProject) detailsTitleRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, [currentProject])
 
   return (
@@ -47,7 +47,7 @@ export default function Projects({projects, currentProject, handleProjectClick, 
         </div>
       ) : (
         <div className="projects-list-container">
-          <h1 className={`about-title ${projectTitlesIndex === 0 && "underline"}`} id={"project-title"}>Projects</h1>
+          <h1 className={`about-title ${projectTitlesIndex === 0 && "underline"}`}>Projects</h1>
           {projects && projects.map((project, index) => (
             <div
               className="project-card"
