@@ -4,7 +4,7 @@ export const handleScroll = (direction, currentIndex, currentOption) => {
 
   const newIndex = direction === 'forward' ? currentIndex + 1 : currentIndex - 1;
   const cardElement = document.getElementById(currentOption[newIndex]);
-  cardElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  cardElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   return newIndex;
 }
 

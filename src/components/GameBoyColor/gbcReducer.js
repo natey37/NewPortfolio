@@ -286,7 +286,7 @@ export function useGBCReducer() {
   useEffect(() => {
     if(!state.projectDetails){
       const cardElement = document.getElementById(PROJECT_TITLES[state.projectTitlesIndex]);
-      cardElement && cardElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      cardElement && cardElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }, [state.projectDetails, state.projectTitlesIndex])
   
