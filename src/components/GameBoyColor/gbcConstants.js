@@ -45,14 +45,6 @@ export const PROJECTS = [
     url: "https://www.sharebooth.app/"
   },
   {
-    title: 'Eco-coins',
-    image: ecocoinsMain,
-    images: [ecocoinsAll, ecocoinsShow1, ecocoinsShow2, ecocoinsShow3, ecocoinsShow4],
-    description: "Eco-Coins is a personal project that aims to raise funds for animal conservation through the sale of unique, animal-themed non-fungible tokens (NFTs). Not only do these NFTs provide a fun and creative way to support animal welfare, but they also serve as a reminder of the importance of preserving and protecting our planet's biodiversity.",
-    madeWith: "This project was developed using React, Three.js, and Procreate",
-    url: "https://www.eco-coins.com/"
-  },
-  {
     title: 'Positively Charged',
     image: positivelyChargedMain,
     images: [positivelyChargedShow1, positivelyChargedShow2],
@@ -83,6 +75,14 @@ export const PROJECTS = [
     madeWith: "This project was developed using JavaScript, Ruby on Rails API, Bootstrap",
     videoUrl: "https://www.youtube.com/embed/Q7bNSfk5Fxc?controls=0",
   }, 
+  {
+    title: 'Eco-coins',
+    image: ecocoinsMain,
+    images: [ecocoinsAll, ecocoinsShow1, ecocoinsShow2, ecocoinsShow3, ecocoinsShow4],
+    description: "Eco-Coins is a personal project that aims to raise funds for animal conservation through the sale of unique, animal-themed non-fungible tokens (NFTs). Not only do these NFTs provide a fun and creative way to support animal welfare, but they also serve as a reminder of the importance of preserving and protecting our planet's biodiversity.",
+    madeWith: "This project was developed using React, Three.js, and Procreate",
+    url: "https://www.eco-coins.com/"
+  },
 ];
 
 export const ABOUT_ME_ITEMS = [
