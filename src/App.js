@@ -11,25 +11,11 @@ function App() {
 
   return (
     <>
-      <div >
-        <div style={{ display: 'flex', flexDirection: 'row'}}>
+      <div>
+        <div className="floating-buttons-container">
           <button
             onClick={() => setUseSimpleMenu(!useSimpleMenu)}
-            style={{
-              position: "fixed",
-              top: "90%",
-              left: "40%",
-              transform: "translate(-50%, -50%)",
-              zIndex: 1001,
-              padding: "10px 16px",
-              fontSize: "14px",
-              backgroundColor: "#E7115F",
-              color: "white",
-              borderRadius: "5px",
-              cursor: "pointer",
-              marginTop: "20px",
-              border: "1px solid #E7D509",
-            }}
+            className="floating-button"
           >
             {useSimpleMenu
               ? "Switch to GameBoy View"
@@ -37,25 +23,9 @@ function App() {
           </button>
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
-            style={{
-              position: "fixed",
-              top: "90%",
-              left: "60%",
-              transform: "translate(-50%, -50%)",
-              zIndex: 1001,
-              padding: "10px 16px",
-              fontSize: "14px",
-              backgroundColor: "#E7115F",
-              color: "white",
-              borderRadius: "5px",
-              cursor: "pointer",
-              marginTop: "20px",
-              border: "1px solid #E7D509",
-            }}
+            className="floating-button"
           >
-            {isDarkMode
-              ? "Switch to Dark Mode"
-              : "Switch to Light Mode"}
+            {isDarkMode ? "Switch to Dark Mode" : "Switch to Light Mode"}
           </button>
         </div>
 
