@@ -1,10 +1,10 @@
+import "./Skyline.css";
 
-import "./Skyline.css"
-
-function Skyline() {
+function Skyline({ darkMode }) {
+  console.log("DARK MIDE", darkMode);
   return (
-    <>
-      <div class="sky"></div>
+    <div class={`skyline-wrapper ${darkMode ? "light-mode" : "dark-mode"}`}>
+      <div class={`sky ${darkMode ? "light-mode" : "dark-mode"}`}></div>
 
       <div class="cloud cloud-1">
         <div class="cloud-element"></div>
@@ -97,42 +97,45 @@ function Skyline() {
         <div class="cloud-element"></div>
       </div>
 
-      {/* <div class="moon-pos">
-  <div class="moon-container">
-    <div class="moon full"></div>
-    <div class="moon new waxing-g hidden"></div>
-    <div class="moon new half-moon-g hidden"></div>
-    <div class="moon full waxing-c hidden"></div>
-    <div class="moon new new-moon hidden"></div>
-    <div class="moon full waning-c hidden"></div>
-    <div class="moon full half-moon-c hidden"></div>
-    <div class="moon new waning-g hidden"></div>
-  </div>
-</div> */}
-      <div class="sun-pos">
-        <div class="sun-container">
-          <div class="sun"></div>
-          <div class="sun-rays">
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
-            <div class="sun-ray"></div>
+      {!darkMode ? (
+        <div class="moon-pos">
+          <div class="moon-container">
+            <div class="moon full"></div>
+            <div class="moon new waxing-g hidden"></div>
+            <div class="moon new half-moon-g hidden"></div>
+            <div class="moon full waxing-c hidden"></div>
+            <div class="moon new new-moon hidden"></div>
+            <div class="moon full waning-c hidden"></div>
+            <div class="moon full half-moon-c hidden"></div>
+            <div class="moon new waning-g hidden"></div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div class="sun-pos">
+          <div class="sun-container">
+            <div class="sun"></div>
+            <div class="sun-rays">
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+              <div class="sun-ray"></div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div id="mountRainier">
         <div id="mt-top"></div>
@@ -723,7 +726,7 @@ function Skyline() {
         <div class="leaf leaf-2"></div>
         <div class="leaf leaf-3"></div>
       </div>
-    </>
+    </div>
   );
 }
 
