@@ -28,15 +28,17 @@ export default function Projects({projects, currentProject, handleProjectClick, 
               </div>
             )
           })}
-          <h4 className={`${projectDetailsIndex === 2 && "underline"}`} id="project-details-about" >About the project</h4>
-          <p>{currentProject.description}</p>
-          <h4 className={`${projectDetailsIndex === 3 && "underline"}`} id="project-details-made-with"  >Made with</h4>
-          <p>{currentProject.madeWith}</p>
-          {currentProject.url ? 
-            <a href={currentProject.url} target="_blank" rel="noopener noreferrer">View Project</a> 
-            : 
-            null
-          }
+          <div className="project-details-text">
+            <h4 className={`${projectDetailsIndex === 2 && "underline"}`} id="project-details-about" >About the project</h4>
+            <p>{currentProject.description}</p>
+            <h4 className={`${projectDetailsIndex === 3 && "underline"}`} id="project-details-made-with"  >Made with</h4>
+            <p>{currentProject.madeWith}</p>
+            {currentProject.url ? 
+              <a href={currentProject.url} target="_blank" rel="noopener noreferrer">View Project</a> 
+              : 
+              null
+            }
+          </div>
           <button 
             className={`${projectDetailsIndex === 4 && "underline"}`}
             id="project-details-back-button"
